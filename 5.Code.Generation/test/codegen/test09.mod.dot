@@ -1,0 +1,14 @@
+digraph IR {
+  graph [fontname="Times New Roman",fontsize=10];
+  node  [fontname="Courier New",fontsize=10];
+  edge  [fontname="Times New Roman",fontsize=10];
+
+  // scope 'test09'
+  test09_cb [label="test09\r  0:     call   t0 <- Input\l  1:     assign a <- t0\l  2: 2_while_cond:\l  3:     if     a >= 0 goto 3_while_body\l  4:     goto   1\l  5: 3_while_body:\l  6:     param  0 <- a\l  7:     call   t1 <- sum_rec\l  8:     param  0 <- t1\l  9:     call   Output\l 10:     param  0 <- a\l 11:     call   t2 <- sum_iter\l 12:     param  0 <- t2\l 13:     call   Output\l 14:     param  0 <- a\l 15:     call   t3 <- sum_alg\l 16:     param  0 <- t3\l 17:     call   Output\l 18:     call   t4 <- Input\l 19:     assign a <- t4\l 20:     goto   2_while_cond\l 21: 1:\l",shape=box]
+  // scope 'sum_rec'
+  sum_rec_cb [label="sum_rec\r  0:     if     n > 0 goto 1_if_true\l  1:     goto   2_if_false\l  2: 1_if_true:\l  3:     sub    t0 <- n, 1\l  4:     param  0 <- t0\l  5:     call   t1 <- sum_rec\l  6:     add    t2 <- n, t1\l  7:     return t2\l  8:     goto   0\l  9: 2_if_false:\l 10:     return 0\l 11: 0:\l",shape=box]
+  // scope 'sum_iter'
+  sum_iter_cb [label="sum_iter\r  0:     assign sum <- 0\l  1:     assign i <- 0\l  2: 3_while_cond:\l  3:     if     i <= n goto 4_while_body\l  4:     goto   2\l  5: 4_while_body:\l  6:     add    t0 <- sum, i\l  7:     assign sum <- t0\l  8:     add    t1 <- i, 1\l  9:     assign i <- t1\l 10:     goto   3_while_cond\l 11: 2:\l 12:     return sum\l",shape=box]
+  // scope 'sum_alg'
+  sum_alg_cb [label="sum_alg\r  0:     add    t0 <- n, 1\l  1:     mul    t1 <- n, t0\l  2:     div    t2 <- t1, 2\l  3:     return t2\l",shape=box]
+};

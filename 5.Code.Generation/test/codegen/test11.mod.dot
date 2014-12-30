@@ -1,0 +1,10 @@
+digraph IR {
+  graph [fontname="Times New Roman",fontsize=10];
+  node  [fontname="Courier New",fontsize=10];
+  edge  [fontname="Times New Roman",fontsize=10];
+
+  // scope 'test11'
+  test11_cb [label="test11\r  0:     call   t0 <- Input\l  1:     param  0 <- t0\l  2:     call   primefactor\l",shape=box]
+  // scope 'primefactor'
+  primefactor_cb [label="primefactor\r  0:     if     n < 1 goto 1_if_true\l  1:     goto   2_if_false\l  2: 1_if_true:\l  3:     return \l  4:     goto   0\l  5: 2_if_false:\l  6:     if     n = 1 goto 5_if_true\l  7:     goto   6_if_false\l  8: 5_if_true:\l  9:     param  0 <- 1\l 10:     call   Output\l 11:     goto   4\l 12: 6_if_false:\l 13: 9_while_cond:\l 14:     if     n > 1 goto 10_while_body\l 15:     goto   8\l 16: 10_while_body:\l 17:     assign f <- 2\l 18: 13_while_cond:\l 19:     if     f <= n goto 14_while_body\l 20:     goto   12\l 21: 14_while_body:\l 22:     div    t0 <- n, f\l 23:     mul    t1 <- t0, f\l 24:     if     t1 = n goto 16_if_true\l 25:     goto   17_if_false\l 26: 16_if_true:\l 27:     param  0 <- f\l 28:     call   Output\l 29:     div    t2 <- n, f\l 30:     assign n <- t2\l 31:     goto   15\l 32: 17_if_false:\l 33:     add    t3 <- f, 1\l 34:     assign f <- t3\l 35: 15:\l 36:     goto   13_while_cond\l 37: 12:\l 38:     goto   9_while_cond\l 39: 8:\l 40: 4:\l 41: 0:\l",shape=box]
+};

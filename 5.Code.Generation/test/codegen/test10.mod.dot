@@ -1,0 +1,14 @@
+digraph IR {
+  graph [fontname="Times New Roman",fontsize=10];
+  node  [fontname="Courier New",fontsize=10];
+  edge  [fontname="Times New Roman",fontsize=10];
+
+  // scope 'test10'
+  test10_cb [label="test10\r  0:     call   t0 <- Input\l  1:     assign a <- t0\l  2:     call   t1 <- Input\l  3:     assign b <- t1\l  4:     param  1 <- b\l  5:     param  0 <- a\l  6:     call   t2 <- gcd_iter\l  7:     param  0 <- t2\l  8:     call   Output\l  9:     param  1 <- b\l 10:     param  0 <- a\l 11:     call   t3 <- gcd_mod\l 12:     param  0 <- t3\l 13:     call   Output\l 14:     param  1 <- b\l 15:     param  0 <- a\l 16:     call   t4 <- gcd_rec\l 17:     param  0 <- t4\l 18:     call   Output\l",shape=box]
+  // scope 'gcd_iter'
+  gcd_iter_cb [label="gcd_iter\r  0: 1_while_cond:\l  1:     if     a # b goto 2_while_body\l  2:     goto   0\l  3: 2_while_body:\l  4:     if     a > b goto 4_if_true\l  5:     goto   5_if_false\l  6: 4_if_true:\l  7:     sub    t0 <- a, b\l  8:     assign a <- t0\l  9:     goto   3\l 10: 5_if_false:\l 11:     sub    t1 <- b, a\l 12:     assign b <- t1\l 13: 3:\l 14:     goto   1_while_cond\l 15: 0:\l 16:     return a\l",shape=box]
+  // scope 'gcd_mod'
+  gcd_mod_cb [label="gcd_mod\r  0: 1_while_cond:\l  1:     if     b # 0 goto 2_while_body\l  2:     goto   0\l  3: 2_while_body:\l  4:     assign t <- b\l  5:     div    t0 <- a, t\l  6:     mul    t1 <- t0, t\l  7:     sub    t2 <- a, t1\l  8:     assign b <- t2\l  9:     assign a <- t\l 10:     goto   1_while_cond\l 11: 0:\l 12:     return a\l",shape=box]
+  // scope 'gcd_rec'
+  gcd_rec_cb [label="gcd_rec\r  0:     if     b = 0 goto 1_if_true\l  1:     goto   2_if_false\l  2: 1_if_true:\l  3:     return a\l  4:     goto   0\l  5: 2_if_false:\l  6:     div    t0 <- a, b\l  7:     mul    t1 <- t0, b\l  8:     sub    t2 <- a, t1\l  9:     param  1 <- t2\l 10:     param  0 <- b\l 11:     call   t3 <- gcd_rec\l 12:     return t3\l 13: 0:\l",shape=box]
+};
